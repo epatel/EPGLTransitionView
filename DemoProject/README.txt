@@ -1,6 +1,8 @@
 
 This was done to a "Utility Application" straight from the Xcode template
 
+• Added files from 'src' the directory.
+
 • Added frameworks
 	- OpenGLES.framework
 	- QuartzCore.framework
@@ -20,14 +22,30 @@ This was done to a "Utility Application" straight from the Xcode template
 		
 		DemoTransition *transition = [[[DemoTransition alloc] init] autorelease];
 		
-		EPGLTransitionView *glview = [[EPGLTransitionView alloc] 
-									  initWithWindow:self.view.window
-									  delegate:transition];
+		EPGLTransitionView *glview = [[[EPGLTransitionView alloc] 
+									   initWithView:self.view
+									   delegate:transition] autorelease];
 		
-		[glview autorelease];
-		[glview startAnimation];
+    #ifdef ENABLE_PHASE_IN
+ 
+        // Get texture for the "next" view
+        [glview prepareTextureTo:controller.view];
+ 
+        // If you are using an "IN" animation for the "next" view set appropriate 
+        // clear color (ie no alpha) 
+        [glview setClearColorRed:0.3
+                           green:0.3
+                            blue:0.3
+                           alpha:1.0];
+    #endif
+
+		[glview startTransition];
 		
 		[self presentModalViewController:controller animated:NO];
 		
 		[controller release];
 	}
+
+
+• To enable a demo of creating a transition for the 'next' view, uncomment the
+  macro definition in 'DemoTransition.h'
