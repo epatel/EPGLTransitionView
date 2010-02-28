@@ -31,7 +31,7 @@
 //
 @protocol EPGLTransitionViewDelegate<NSObject>
 - (void)setupTransition;
-- (BOOL)drawTransitionFrame;
+- (BOOL)drawTransitionFrame; // return NO to end transition
 @end
 
 @interface EPGLTransitionView : UIView
