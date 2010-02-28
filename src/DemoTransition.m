@@ -65,10 +65,12 @@
 			texcoords[i][j][3][1] = ty;
 			yOut[i][j] = 0;
 			dyOut[i][j] = 0;
+#ifdef ENABLE_PHASE_IN
 			if (j)
 				yIn[i][j] = yIn[i][j-1]+3.0/6.0+(rand()%200)/500.0;
 			else
 				yIn[i][j] = 3.0+3.0/6.0+(rand()%200)/500.0;
+#endif
 		}
 	}
 	
@@ -102,8 +104,13 @@
 				dyOut[i][j] *= 1.1;
 				moved++;
 			}
+#ifdef ENABLE_PHASE_IN
 			if (yOut[i][j] < 0.5) 
 				allAreGone = NO;
+#else
+			if (yOut[i][j] < 3.0) 
+				allAreGone = NO;
+#endif
 		}
 		if (moved<4) {
 			if (rand()%100 > 50) {
@@ -119,6 +126,8 @@
 		}
 	}
 	
+#ifdef ENABLE_PHASE_IN
+
 	glBindTexture(GL_TEXTURE_2D, textureToView);
 	
 	if (allAreGone) {
@@ -137,6 +146,8 @@
 			}
 		}
 	}
+
+#endif
 	
 	return !allAreGone;
 }

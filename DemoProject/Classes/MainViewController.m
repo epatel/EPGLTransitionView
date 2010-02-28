@@ -58,15 +58,18 @@
 								   initWithWindow:self.view
 								   delegate:transition] autorelease];
 
-	// Get texture for the "to" view
+#ifdef ENABLE_PHASE_IN
+
+	// Get texture for the "next" view
 	[glview prepareTextureTo:controller.view];
 
-	// If you are using an "IN" animation for the "to" view set appropriate 
+	// If you are using an "IN" animation for the "next" view set appropriate 
 	// clear color (ie no alpha) 
 	[glview setClearColorRed:0.3
 					   green:0.3
 						blue:0.3
 					   alpha:1.0];
+#endif
 	
 	[glview startTransition];
 		
