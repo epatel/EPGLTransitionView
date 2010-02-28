@@ -54,15 +54,25 @@
 	
 	DemoTransition *transition = [[[DemoTransition alloc] init] autorelease];
 	
-	EPGLTransitionView *glview = [[EPGLTransitionView alloc] 
-								  initWithWindow:self.view.window
-								  delegate:transition];
+	EPGLTransitionView *glview = [[[EPGLTransitionView alloc] 
+								   initWithWindow:self.view
+								   delegate:transition] autorelease];
+
+	// Get texture for the "to" view
+	[glview prepareTextureTo:controller.view];
+
+	// If you are using an "IN" animation for the "to" view set appropriate 
+	// clear color (ie no alpha) 
+	[glview setClearColorRed:0.3
+					   green:0.3
+						blue:0.3
+					   alpha:1.0];
 	
-	[glview autorelease];
-	[glview startAnimation];
-	
+	[glview startTransition];
+		
 	[self presentModalViewController:controller animated:NO];
-	
+
+
 	[controller release];
 }
 

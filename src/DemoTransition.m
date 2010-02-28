@@ -31,9 +31,6 @@
 	srand(time(NULL));
 
 	// Setup matrices
-    glMatrixMode(GL_TEXTURE);
-	glLoadIdentity();
-	glScalef(320.0/512.0, 480.0/512.0, 1.0); // Convert to screen part of the 512x512 texture
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 	glOrthof(-1, 1, -1.5, 1.5, -10, 10); // Could also use glFrustum here for a 3D look
@@ -66,8 +63,12 @@
 			texcoords[i][j][2][1] = ty;
 			texcoords[i][j][3][0] = tx+1.0/4.0;
 			texcoords[i][j][3][1] = ty;
-			y[i][j] = 0;
-			dy[i][j] = 0;
+			yOut[i][j] = 0;
+			dyOut[i][j] = 0;
+			if (j)
+				yIn[i][j] = yIn[i][j-1]+3.0/6.0+(rand()%200)/500.0;
+			else
+				yIn[i][j] = 3.0+3.0/6.0+(rand()%200)/500.0;
 		}
 	}
 	
@@ -79,14 +80,15 @@
 }
 
 // GL context is active and screen texture bound to be used
-- (BOOL)drawTransitionFrame
+- (BOOL)drawTransitionFrameWithTextureFrom:(GLuint)textureFromView 
+								 textureTo:(GLuint)textureToView
 {
 	int i, j;
 	
 	for (i=0; i<4; i++) {
 		for (j=0; j<6; j++) {
 			glPushMatrix();
-			glTranslatef(0, -y[i][j], 0);
+			glTranslatef(0, -yOut[i][j], 0);
 			glDrawArrays(GL_TRIANGLE_STRIP, (i*6+j)*4, 4);
 			glPopMatrix();
 		}
@@ -95,25 +97,44 @@
 	for (j=0; j<6; j++) {
 		int moved = 0;
 		for (i=0; i<4; i++) {
-			if (dy[i][j] > 0.0) {
-				y[i][j] += dy[i][j];
-				dy[i][j] *= 1.1;
+			if (dyOut[i][j] > 0.0) {
+				yOut[i][j] += dyOut[i][j];
+				dyOut[i][j] *= 1.1;
 				moved++;
 			}
-			if (y[i][j] < 2.0) 
+			if (yOut[i][j] < 0.5) 
 				allAreGone = NO;
 		}
 		if (moved<4) {
 			if (rand()%100 > 50) {
 				while (1) { // naïve loop to find a none moving square
 					i = rand()%4;
-					if (!(dy[i][j] > 0.0)) {
-						dy[i][j] = 0.02;
+					if (!(dyOut[i][j] > 0.0)) {
+						dyOut[i][j] = 0.02;
 						break; // got one, leave now
 					}
 				}
 			}
 			break; // no more moving squares, leave outer loop
+		}
+	}
+	
+	glBindTexture(GL_TEXTURE_2D, textureToView);
+	
+	if (allAreGone) {
+		for (i=0; i<4; i++) {
+			for (j=0; j<6; j++) {
+				glPushMatrix();
+				glTranslatef(0, yIn[i][j], 0);
+				glDrawArrays(GL_TRIANGLE_STRIP, (i*6+j)*4, 4);
+				glPopMatrix();
+				yIn[i][j] -= 0.05;
+				if (yIn[i][j] < 0.0) {
+					yIn[i][j] = 0.0;
+				} else {
+					allAreGone = NO;
+				}
+			}
 		}
 	}
 	

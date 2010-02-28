@@ -33,8 +33,9 @@
 	// 4x6 part, 4 vertex 2 coords
 	GLfloat vertices[4][6][4][2];
 	GLfloat texcoords[4][6][4][2];
-	float y[4][6];
-	float dy[4][6];
+	float yOut[4][6];
+	float dyOut[4][6];
+	float yIn[4][6];
 }
 
 @end
