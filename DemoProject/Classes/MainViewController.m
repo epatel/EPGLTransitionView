@@ -55,7 +55,7 @@
 	DemoTransition *transition = [[[DemoTransition alloc] init] autorelease];
 	
 	EPGLTransitionView *glview = [[[EPGLTransitionView alloc] 
-								   initWithWindow:self.view
+								   initWithView:self.view
 								   delegate:transition] autorelease];
 
 #ifdef ENABLE_PHASE_IN

@@ -70,7 +70,7 @@
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
 @property (nonatomic) NSInteger transitionFrameInterval;
 
-- (id) initWithWindow:(UIView*)view 
+- (id) initWithView:(UIView*)view 
 			 delegate:(id<EPGLTransitionViewDelegate>)delegate;
 - (void) prepareTextureTo:(UIView*)view;
 - (void) startTransition;

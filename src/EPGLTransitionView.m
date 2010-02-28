@@ -36,7 +36,7 @@
     return [CAEAGLLayer class];
 }
 
-- (id)initWithWindow:(UIView*)view 
+- (id)initWithView:(UIView*)view 
 			delegate:(id<EPGLTransitionViewDelegate>)_delegate;
 {
     if ((self = [super initWithFrame:view.frame]))
