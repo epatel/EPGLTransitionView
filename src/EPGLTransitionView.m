@@ -299,6 +299,9 @@
 {
 	if ([self render] == NO) {
 		[self stopTransition];
+		if (delegate && 
+			[delegate respondsToSelector:@selector(transitionEnded)]) 
+			[delegate transitionEnded];
 		[self removeFromSuperview];
 	}
 }

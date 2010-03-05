@@ -38,6 +38,9 @@
 // return NO to end transition
 - (BOOL)drawTransitionFrameWithTextureFrom:(GLuint)textureFromView 
 								 textureTo:(GLuint)textureToView; 
+
+@optional
+- (void)transitionEnded;
 @end
 
 @interface EPGLTransitionView : UIView

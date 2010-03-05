@@ -152,4 +152,11 @@
 	return !allAreGone;
 }
 
+#if 0
+- (void)transitionEnded
+{
+	NSLog(@"transitionEnded");
+}
+#endif
+
 @end
