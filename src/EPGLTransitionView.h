@@ -34,10 +34,10 @@
 - (void)setupTransition;
 
 // 'textureFromView' is already active (bind)
-// If no second texture was prepared 'textureTo' will not be valid
+// If no second texture was prepared 'textureToView' will not be valid
 // return NO to end transition
 - (BOOL)drawTransitionFrameWithTextureFrom:(GLuint)textureFromView 
-								 textureTo:(GLuint)textureToView; 
+                                 textureTo:(GLuint)textureToView; 
 
 @optional
 - (void)transitionEnded;
@@ -46,39 +46,39 @@
 @interface EPGLTransitionView : UIView
 {    
 @private
-	id<EPGLTransitionViewDelegate> delegate;
-	
-	BOOL        animating;
-	BOOL        displayLinkSupported;
-	NSInteger   transitionFrameInterval;
-	id          displayLink;
+    id<EPGLTransitionViewDelegate> delegate;
+    
+    BOOL        animating;
+    BOOL        displayLinkSupported;
+    NSInteger   transitionFrameInterval;
+    id          displayLink;
     NSTimer     *animationTimer;
-	
-	EAGLContext *context;
-	
-	GLint       backingWidth;
-	GLint       backingHeight;
-	
-	GLuint      defaultFramebuffer;
-	GLuint      colorRenderbuffer;
-	
-	GLuint      textureFromView;
-	GLuint      textureToView;
-	
-	CGSize      size;
-	
-	GLfloat     clearColor[4];
+    
+    EAGLContext *context;
+    
+    GLint       backingWidth;
+    GLint       backingHeight;
+    
+    GLuint      defaultFramebuffer;
+    GLuint      colorRenderbuffer;
+    
+    GLuint      textureFromView;
+    GLuint      textureToView;
+    
+    CGSize      size;
+    
+    GLfloat     clearColor[4];
 }
 
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
 @property (nonatomic) NSInteger transitionFrameInterval;
 
 - (id) initWithView:(UIView*)view 
-			 delegate:(id<EPGLTransitionViewDelegate>)delegate;
+           delegate:(id<EPGLTransitionViewDelegate>)delegate;
 - (void) prepareTextureTo:(UIView*)view;
 - (void) startTransition;
 - (void) setClearColorRed:(GLfloat)red 
-					green:(GLfloat)green
-					 blue:(GLfloat)blue
-					alpha:(GLfloat)alpha;
+                    green:(GLfloat)green
+                     blue:(GLfloat)blue
+                    alpha:(GLfloat)alpha;
 @end

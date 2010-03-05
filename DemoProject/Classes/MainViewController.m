@@ -41,42 +41,42 @@
 
 - (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller {
     
-	[self dismissModalViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 
 - (IBAction)showInfo {    
-	
-	FlipsideViewController *controller = [[FlipsideViewController alloc] 
-										  initWithNibName:@"FlipsideView" 
-										  bundle:nil];
-	controller.delegate = self;
-	
-	DemoTransition *transition = [[[DemoTransition alloc] init] autorelease];
-	
-	EPGLTransitionView *glview = [[[EPGLTransitionView alloc] 
-								   initWithView:self.view
-								   delegate:transition] autorelease];
-
+    
+    FlipsideViewController *controller = [[FlipsideViewController alloc] 
+                                          initWithNibName:@"FlipsideView" 
+                                          bundle:nil];
+    controller.delegate = self;
+    
+    DemoTransition *transition = [[[DemoTransition alloc] init] autorelease];
+    
+    EPGLTransitionView *glview = [[[EPGLTransitionView alloc] 
+                                   initWithView:self.view
+                                   delegate:transition] autorelease];
+    
 #ifdef ENABLE_PHASE_IN
-
-	// Get texture for the "next" view
-	[glview prepareTextureTo:controller.view];
-
-	// If you are using an "IN" animation for the "next" view set appropriate 
-	// clear color (ie no alpha) 
-	[glview setClearColorRed:0.3
-					   green:0.3
-						blue:0.3
-					   alpha:1.0];
+    
+    // Get texture for the "next" view
+    [glview prepareTextureTo:controller.view];
+    
+    // If you are using an "IN" animation for the "next" view set appropriate 
+    // clear color (ie no alpha) 
+    [glview setClearColorRed:0.3
+                       green:0.3
+                        blue:0.3
+                       alpha:1.0];
 #endif
-	
-	[glview startTransition];
-		
-	[self presentModalViewController:controller animated:NO];
-
-
-	[controller release];
+    
+    [glview startTransition];
+    
+    [self presentModalViewController:controller animated:NO];
+    
+    
+    [controller release];
 }
 
 
@@ -90,15 +90,15 @@
  */
 
 - (void)didReceiveMemoryWarning {
-	// Releases the view if it doesn't have a superview.
+    // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-	
-	// Release any cached data, images, etc that aren't in use.
+    
+    // Release any cached data, images, etc that aren't in use.
 }
 
 - (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
 }
 
 
