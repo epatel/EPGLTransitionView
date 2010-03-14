@@ -61,6 +61,7 @@
     
     GLuint      defaultFramebuffer;
     GLuint      colorRenderbuffer;
+    GLuint      depthRenderbuffer;
     
     GLuint      textureFromView;
     GLuint      textureToView;

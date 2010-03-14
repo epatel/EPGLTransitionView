@@ -101,14 +101,22 @@
         
         glGenFramebuffersOES(1, &defaultFramebuffer);
         glGenRenderbuffersOES(1, &colorRenderbuffer);
+        glGenRenderbuffersOES(1, &depthRenderbuffer);
         glBindFramebufferOES(GL_FRAMEBUFFER_OES, defaultFramebuffer);
         glBindRenderbufferOES(GL_RENDERBUFFER_OES, colorRenderbuffer);
         glFramebufferRenderbufferOES(GL_FRAMEBUFFER_OES, 
                                      GL_COLOR_ATTACHMENT0_OES, 
                                      GL_RENDERBUFFER_OES, 
-                                     colorRenderbuffer);
-        
+                                     colorRenderbuffer);        
+        glBindRenderbufferOES(GL_RENDERBUFFER_OES, depthRenderbuffer);
+        glFramebufferRenderbufferOES(GL_FRAMEBUFFER_OES, 
+                                     GL_DEPTH_ATTACHMENT_OES, 
+                                     GL_RENDERBUFFER_OES, 
+                                     depthRenderbuffer);
+
         glViewport(0, 0, size.width, size.height);
+        
+        glEnable(GL_DEPTH_TEST);
         
         glMatrixMode(GL_TEXTURE);
         glLoadIdentity();
@@ -245,6 +253,12 @@
         colorRenderbuffer = 0;
     }
     
+    if (depthRenderbuffer) 
+    {
+        glDeleteRenderbuffersOES(1, &depthRenderbuffer);
+        depthRenderbuffer = 0;
+    }
+    
     if ([EAGLContext currentContext] == context)
         [EAGLContext setCurrentContext:nil];
     
@@ -264,7 +278,7 @@
                  clearColor[1], 
                  clearColor[2], 
                  clearColor[3]);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, textureFromView);
@@ -284,7 +298,12 @@
     glBindRenderbufferOES(GL_RENDERBUFFER_OES, colorRenderbuffer);
     [context renderbufferStorage:GL_RENDERBUFFER_OES fromDrawable:layer];
     glGetRenderbufferParameterivOES(GL_RENDERBUFFER_OES, GL_RENDERBUFFER_WIDTH_OES, &backingWidth);
-    glGetRenderbufferParameterivOES(GL_RENDERBUFFER_OES, GL_RENDERBUFFER_HEIGHT_OES, &backingHeight);
+    glGetRenderbufferParameterivOES(GL_RENDERBUFFER_OES, GL_RENDERBUFFER_HEIGHT_OES, &backingHeight);    
+    glBindRenderbufferOES(GL_RENDERBUFFER_OES, depthRenderbuffer);
+    glRenderbufferStorageOES(GL_RENDERBUFFER_OES, 
+                             GL_DEPTH_COMPONENT16_OES, 
+                             backingWidth, 
+                             backingHeight);
     
     if (glCheckFramebufferStatusOES(GL_FRAMEBUFFER_OES) != GL_FRAMEBUFFER_COMPLETE_OES)
     {
