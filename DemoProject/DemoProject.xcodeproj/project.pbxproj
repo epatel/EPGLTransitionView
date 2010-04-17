@@ -25,6 +25,7 @@
 		3A112DAE113A8ED3004D04A4 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A112DAD113A8ED3004D04A4 /* OpenGLES.framework */; };
 		3A112DC2113A8F7B004D04A4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A112DC1113A8F7B004D04A4 /* QuartzCore.framework */; };
 		3A112DE0113A9345004D04A4 /* painting.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3A112DDF113A9345004D04A4 /* painting.jpg */; };
+		3A7D0F70117A423D00CFAD01 /* Demo2Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D0F6F117A423D00CFAD01 /* Demo2Transition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,8 @@
 		3A112DAD113A8ED3004D04A4 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		3A112DC1113A8F7B004D04A4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3A112DDF113A9345004D04A4 /* painting.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = painting.jpg; sourceTree = "<group>"; };
+		3A7D0F6E117A423D00CFAD01 /* Demo2Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Demo2Transition.h; path = ../src/Demo2Transition.h; sourceTree = SOURCE_ROOT; };
+		3A7D0F6F117A423D00CFAD01 /* Demo2Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Demo2Transition.m; path = ../src/Demo2Transition.m; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* DemoProject-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DemoProject-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -168,6 +171,8 @@
 			children = (
 				3A112DA0113A8E8E004D04A4 /* DemoTransition.h */,
 				3A112DA1113A8E8E004D04A4 /* DemoTransition.m */,
+				3A7D0F6E117A423D00CFAD01 /* Demo2Transition.h */,
+				3A7D0F6F117A423D00CFAD01 /* Demo2Transition.m */,
 				3A112DA2113A8E8E004D04A4 /* EPGLTransitionView.h */,
 				3A112DA3113A8E8E004D04A4 /* EPGLTransitionView.m */,
 			);
@@ -246,6 +251,7 @@
 				289233B00DB2D0DB0083E9F9 /* FlipsideViewController.m in Sources */,
 				3A112DA4113A8E8E004D04A4 /* DemoTransition.m in Sources */,
 				3A112DA5113A8E8E004D04A4 /* EPGLTransitionView.m in Sources */,
+				3A7D0F70117A423D00CFAD01 /* Demo2Transition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

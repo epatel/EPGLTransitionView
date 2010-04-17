@@ -11,6 +11,6 @@
 @interface MainViewController : UIViewController <FlipsideViewControllerDelegate> {
 }
 
-- (IBAction)showInfo;
+- (IBAction)showInfo:(id)sender;
 
 @end

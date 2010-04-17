@@ -10,6 +10,7 @@
 #import "MainView.h"
 
 #import "DemoTransition.h"
+#import "Demo2Transition.h"
 
 @implementation MainViewController
 
@@ -45,23 +46,31 @@
 }
 
 
-- (IBAction)showInfo {    
-    
+- (IBAction)showInfo:(id)sender 
+{        
     FlipsideViewController *controller = [[FlipsideViewController alloc] 
                                           initWithNibName:@"FlipsideView" 
                                           bundle:nil];
     controller.delegate = self;
     
-    DemoTransition *transition = [[[DemoTransition alloc] init] autorelease];
+    NSObject<EPGLTransitionViewDelegate> *transition;
+    
+    if ([sender tag])
+        transition = [[[Demo2Transition alloc] init] autorelease];
+    else
+        transition = [[[DemoTransition alloc] init] autorelease];
     
     EPGLTransitionView *glview = [[[EPGLTransitionView alloc] 
                                    initWithView:self.view
                                    delegate:transition] autorelease];
     
+    if ([sender tag])
+        [glview prepareTextureTo:controller.view];
+
 #ifdef ENABLE_PHASE_IN
-    
-    // Get texture for the "next" view
-    [glview prepareTextureTo:controller.view];
+    else 
+        // Get texture for the "next" view
+        [glview prepareTextureTo:controller.view];
     
     // If you are using an "IN" animation for the "next" view set appropriate 
     // clear color (ie no alpha) 
