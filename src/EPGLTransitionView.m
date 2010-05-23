@@ -41,7 +41,10 @@
 {
     if ((self = [super initWithFrame:view.frame]))
     {
+        maxTextureSize = 512;
         size = view.frame.size;
+        if (size.height > 512 || size.width > 512) // Big screen? iPad!
+            maxTextureSize = 1024;
         delegate = _delegate;
         [delegate retain];      
         [self setClearColorRed:0.0
@@ -56,18 +59,18 @@
         UIGraphicsEndImageContext();
         
         // Allocate some memory for the texture
-        GLubyte *textureData = (GLubyte*)calloc(512*4, 512);
+        GLubyte *textureData = (GLubyte*)calloc(maxTextureSize*4, maxTextureSize);
         
         // Create a drawing context to draw image into texture memory
         CGContextRef textureContext = CGBitmapContextCreate(textureData, 
-                                                            512, 
-                                                            512, 
+                                                            maxTextureSize, 
+                                                            maxTextureSize, 
                                                             8, 
-                                                            512*4, 
+                                                            maxTextureSize*4, 
                                                             CGImageGetColorSpace(image.CGImage),    
                                                             kCGImageAlphaPremultipliedLast);
         CGContextDrawImage(textureContext, 
-                           CGRectMake(0, 512-size.height, size.width, size.height), 
+                           CGRectMake(0, maxTextureSize-size.height, size.width, size.height), 
                            image.CGImage);
         CGContextRelease(textureContext);
         // ...done creating the texture data
@@ -94,7 +97,7 @@
         glBindTexture(GL_TEXTURE_2D, textureFromView);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 512, 512, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureData);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, maxTextureSize, maxTextureSize, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureData);
         
         // free texture data which is by now copied into the GL context
         free(textureData);
@@ -120,7 +123,7 @@
         
         glMatrixMode(GL_TEXTURE);
         glLoadIdentity();
-        glScalef(size.width/512.0, size.height/512.0, 1.0); // Convert to screen part of the 512x512 texture
+        glScalef(size.width/(float)maxTextureSize, size.height/(float)maxTextureSize, 1.0); // Convert to screen part of the maxTextureSizexmaxTextureSize texture
         glMatrixMode(GL_MODELVIEW);
         
         // setup delegate now when GL context is active
@@ -154,18 +157,18 @@
     UIGraphicsEndImageContext();
     
     // Allocate some memory for the texture
-    GLubyte *textureData = (GLubyte*)calloc(512*4, 512);
+    GLubyte *textureData = (GLubyte*)calloc(maxTextureSize*4, maxTextureSize);
     
     // Create a drawing context to draw image into texture memory
     CGContextRef textureContext = CGBitmapContextCreate(textureData, 
-                                                        512, 
-                                                        512, 
+                                                        maxTextureSize, 
+                                                        maxTextureSize, 
                                                         8, 
-                                                        512*4, 
+                                                        maxTextureSize*4, 
                                                         CGImageGetColorSpace(image.CGImage),    
                                                         kCGImageAlphaPremultipliedLast);
     CGContextDrawImage(textureContext, 
-                       CGRectMake(0, 512-size.height, size.width, size.height), 
+                       CGRectMake(0, maxTextureSize-size.height, size.width, size.height), 
                        image.CGImage);
     CGContextRelease(textureContext);
     // ...done creating the texture data
@@ -176,7 +179,7 @@
     glBindTexture(GL_TEXTURE_2D, textureToView);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 512, 512, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureData);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, maxTextureSize, maxTextureSize, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureData);
     
     // free texture data which is by now copied into the GL context
     free(textureData);

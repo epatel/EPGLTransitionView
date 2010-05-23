@@ -67,6 +67,7 @@
     GLuint      textureToView;
     
     CGSize      size;
+    int         maxTextureSize;
     
     GLfloat     clearColor[4];
 }
