@@ -1,0 +1,355 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3A0BB4BB11A9EA7400C6C3D4 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3A112DA8113A8EB2004D04A4 /* README.txt */; };
+		3A0BB4BC11A9EA7400C6C3D4 /* painting.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3A112DDF113A9345004D04A4 /* painting.jpg */; };
+		3A0BB4BE11A9EA7400C6C3D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		3A0BB4BF11A9EA7400C6C3D4 /* DemoProjectAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* DemoProjectAppDelegate.m */; };
+		3A0BB4C011A9EA7400C6C3D4 /* FlipsideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233A30DB2D0840083E9F9 /* FlipsideView.m */; };
+		3A0BB4C111A9EA7400C6C3D4 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233A50DB2D0840083E9F9 /* MainView.m */; };
+		3A0BB4C211A9EA7400C6C3D4 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */; };
+		3A0BB4C311A9EA7400C6C3D4 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */; };
+		3A0BB4C411A9EA7400C6C3D4 /* DemoTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A112DA1113A8E8E004D04A4 /* DemoTransition.m */; };
+		3A0BB4C511A9EA7400C6C3D4 /* EPGLTransitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A112DA3113A8E8E004D04A4 /* EPGLTransitionView.m */; };
+		3A0BB4C611A9EA7400C6C3D4 /* Demo2Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D0F6F117A423D00CFAD01 /* Demo2Transition.m */; };
+		3A0BB4C811A9EA7400C6C3D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		3A0BB4C911A9EA7400C6C3D4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		3A0BB4CA11A9EA7400C6C3D4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765580DF743DE002DB57D /* CoreGraphics.framework */; };
+		3A0BB4CB11A9EA7400C6C3D4 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A112DAD113A8ED3004D04A4 /* OpenGLES.framework */; };
+		3A0BB4CC11A9EA7400C6C3D4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A112DC1113A8F7B004D04A4 /* QuartzCore.framework */; };
+		3A0BB4D611A9EA7500C6C3D4 /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A0BB4D311A9EA7500C6C3D4 /* FlipsideView.xib */; };
+		3A0BB4D711A9EA7500C6C3D4 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A0BB4D411A9EA7500C6C3D4 /* MainView.xib */; };
+		3A0BB4D811A9EA7500C6C3D4 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A0BB4D511A9EA7500C6C3D4 /* MainWindow.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* DemoProjectAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoProjectAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* DemoProjectAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoProjectAppDelegate.m; sourceTree = "<group>"; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		288765580DF743DE002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		289233A20DB2D0840083E9F9 /* FlipsideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlipsideView.h; path = Classes/FlipsideView.h; sourceTree = "<group>"; };
+		289233A30DB2D0840083E9F9 /* FlipsideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlipsideView.m; path = Classes/FlipsideView.m; sourceTree = "<group>"; };
+		289233A40DB2D0840083E9F9 /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainView.h; path = Classes/MainView.h; sourceTree = "<group>"; };
+		289233A50DB2D0840083E9F9 /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainView.m; path = Classes/MainView.m; sourceTree = "<group>"; };
+		289233A80DB2D0DB0083E9F9 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Classes/MainViewController.h; sourceTree = "<group>"; };
+		289233A90DB2D0DB0083E9F9 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Classes/MainViewController.m; sourceTree = "<group>"; };
+		289233AC0DB2D0DB0083E9F9 /* FlipsideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlipsideViewController.h; path = Classes/FlipsideViewController.h; sourceTree = "<group>"; };
+		289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlipsideViewController.m; path = Classes/FlipsideViewController.m; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* DemoProject_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoProject_Prefix.pch; sourceTree = "<group>"; };
+		3A0BB4D011A9EA7400C6C3D4 /* DemoProject-iPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DemoProject-iPad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A0BB4D311A9EA7500C6C3D4 /* FlipsideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FlipsideView.xib; path = "Resources-iPad/FlipsideView.xib"; sourceTree = "<group>"; };
+		3A0BB4D411A9EA7500C6C3D4 /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainView.xib; path = "Resources-iPad/MainView.xib"; sourceTree = "<group>"; };
+		3A0BB4D511A9EA7500C6C3D4 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = "Resources-iPad/MainWindow.xib"; sourceTree = "<group>"; };
+		3A112DA0113A8E8E004D04A4 /* DemoTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DemoTransition.h; path = ../src/DemoTransition.h; sourceTree = SOURCE_ROOT; };
+		3A112DA1113A8E8E004D04A4 /* DemoTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DemoTransition.m; path = ../src/DemoTransition.m; sourceTree = SOURCE_ROOT; };
+		3A112DA2113A8E8E004D04A4 /* EPGLTransitionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EPGLTransitionView.h; path = ../src/EPGLTransitionView.h; sourceTree = SOURCE_ROOT; };
+		3A112DA3113A8E8E004D04A4 /* EPGLTransitionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EPGLTransitionView.m; path = ../src/EPGLTransitionView.m; sourceTree = SOURCE_ROOT; };
+		3A112DA8113A8EB2004D04A4 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		3A112DAD113A8ED3004D04A4 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		3A112DC1113A8F7B004D04A4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3A112DDF113A9345004D04A4 /* painting.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = painting.jpg; sourceTree = "<group>"; };
+		3A7D0F6E117A423D00CFAD01 /* Demo2Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Demo2Transition.h; path = ../src/Demo2Transition.h; sourceTree = SOURCE_ROOT; };
+		3A7D0F6F117A423D00CFAD01 /* Demo2Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Demo2Transition.m; path = ../src/Demo2Transition.m; sourceTree = SOURCE_ROOT; };
+		8D1107310486CEB800E47090 /* DemoProject-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DemoProject-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3A0BB4C711A9EA7400C6C3D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A0BB4C811A9EA7400C6C3D4 /* Foundation.framework in Frameworks */,
+				3A0BB4C911A9EA7400C6C3D4 /* UIKit.framework in Frameworks */,
+				3A0BB4CA11A9EA7400C6C3D4 /* CoreGraphics.framework in Frameworks */,
+				3A0BB4CB11A9EA7400C6C3D4 /* OpenGLES.framework in Frameworks */,
+				3A0BB4CC11A9EA7400C6C3D4 /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Application Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				1D3623240D0F684500981E51 /* DemoProjectAppDelegate.h */,
+				1D3623250D0F684500981E51 /* DemoProjectAppDelegate.m */,
+			);
+			name = "Application Delegate";
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3A0BB4D011A9EA7400C6C3D4 /* DemoProject-iPad.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		281C6CD70DB2D82200F60ACC /* Flipside View */ = {
+			isa = PBXGroup;
+			children = (
+				289233A20DB2D0840083E9F9 /* FlipsideView.h */,
+				289233A30DB2D0840083E9F9 /* FlipsideView.m */,
+				289233AC0DB2D0DB0083E9F9 /* FlipsideViewController.h */,
+				289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */,
+			);
+			name = "Flipside View";
+			sourceTree = "<group>";
+		};
+		289233A00DB2D0730083E9F9 /* Main View */ = {
+			isa = PBXGroup;
+			children = (
+				289233A40DB2D0840083E9F9 /* MainView.h */,
+				289233A50DB2D0840083E9F9 /* MainView.m */,
+				289233A80DB2D0DB0083E9F9 /* MainViewController.h */,
+				289233A90DB2D0DB0083E9F9 /* MainViewController.m */,
+			);
+			name = "Main View";
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				3A112DA8113A8EB2004D04A4 /* README.txt */,
+				3A112D9F113A8E76004D04A4 /* EPGLTransitionView */,
+				289233A00DB2D0730083E9F9 /* Main View */,
+				281C6CD70DB2D82200F60ACC /* Flipside View */,
+				080E96DDFE201D6D7F000001 /* Application Delegate */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				3A0BB4D211A9EA7400C6C3D4 /* Resources-iPad */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+				3A112DAD113A8ED3004D04A4 /* OpenGLES.framework */,
+				3A112DC1113A8F7B004D04A4 /* QuartzCore.framework */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* DemoProject_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3A112DDF113A9345004D04A4 /* painting.jpg */,
+				8D1107310486CEB800E47090 /* DemoProject-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765580DF743DE002DB57D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3A0BB4D211A9EA7400C6C3D4 /* Resources-iPad */ = {
+			isa = PBXGroup;
+			children = (
+				3A0BB4D311A9EA7500C6C3D4 /* FlipsideView.xib */,
+				3A0BB4D411A9EA7500C6C3D4 /* MainView.xib */,
+				3A0BB4D511A9EA7500C6C3D4 /* MainWindow.xib */,
+			);
+			name = "Resources-iPad";
+			sourceTree = "<group>";
+		};
+		3A112D9F113A8E76004D04A4 /* EPGLTransitionView */ = {
+			isa = PBXGroup;
+			children = (
+				3A112DA0113A8E8E004D04A4 /* DemoTransition.h */,
+				3A112DA1113A8E8E004D04A4 /* DemoTransition.m */,
+				3A7D0F6E117A423D00CFAD01 /* Demo2Transition.h */,
+				3A7D0F6F117A423D00CFAD01 /* Demo2Transition.m */,
+				3A112DA2113A8E8E004D04A4 /* EPGLTransitionView.h */,
+				3A112DA3113A8E8E004D04A4 /* EPGLTransitionView.m */,
+			);
+			name = EPGLTransitionView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3A0BB4B611A9EA7400C6C3D4 /* DemoProject-iPad */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A0BB4CD11A9EA7400C6C3D4 /* Build configuration list for PBXNativeTarget "DemoProject-iPad" */;
+			buildPhases = (
+				3A0BB4B711A9EA7400C6C3D4 /* Resources */,
+				3A0BB4BD11A9EA7400C6C3D4 /* Sources */,
+				3A0BB4C711A9EA7400C6C3D4 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DemoProject-iPad";
+			productName = DemoProject;
+			productReference = 3A0BB4D011A9EA7400C6C3D4 /* DemoProject-iPad.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "DemoProject" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				en,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3A0BB4B611A9EA7400C6C3D4 /* DemoProject-iPad */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3A0BB4B711A9EA7400C6C3D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A0BB4BB11A9EA7400C6C3D4 /* README.txt in Resources */,
+				3A0BB4BC11A9EA7400C6C3D4 /* painting.jpg in Resources */,
+				3A0BB4D611A9EA7500C6C3D4 /* FlipsideView.xib in Resources */,
+				3A0BB4D711A9EA7500C6C3D4 /* MainView.xib in Resources */,
+				3A0BB4D811A9EA7500C6C3D4 /* MainWindow.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3A0BB4BD11A9EA7400C6C3D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A0BB4BE11A9EA7400C6C3D4 /* main.m in Sources */,
+				3A0BB4BF11A9EA7400C6C3D4 /* DemoProjectAppDelegate.m in Sources */,
+				3A0BB4C011A9EA7400C6C3D4 /* FlipsideView.m in Sources */,
+				3A0BB4C111A9EA7400C6C3D4 /* MainView.m in Sources */,
+				3A0BB4C211A9EA7400C6C3D4 /* MainViewController.m in Sources */,
+				3A0BB4C311A9EA7400C6C3D4 /* FlipsideViewController.m in Sources */,
+				3A0BB4C411A9EA7400C6C3D4 /* DemoTransition.m in Sources */,
+				3A0BB4C511A9EA7400C6C3D4 /* EPGLTransitionView.m in Sources */,
+				3A0BB4C611A9EA7400C6C3D4 /* Demo2Transition.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3A0BB4CE11A9EA7400C6C3D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"ARCHS[sdk=iphoneos*]" = armv7;
+				"ARCHS[sdk=iphonesimulator*]" = i386;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = DemoProject_Prefix.pch;
+				INFOPLIST_FILE = "DemoProject-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				PRODUCT_NAME = "DemoProject-iPad";
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		3A0BB4CF11A9EA7400C6C3D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"ARCHS[sdk=iphoneos*]" = armv7;
+				"ARCHS[sdk=iphonesimulator*]" = i386;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = DemoProject_Prefix.pch;
+				INFOPLIST_FILE = "DemoProject-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				PRODUCT_NAME = "DemoProject-iPad";
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.1.2;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.1.2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3A0BB4CD11A9EA7400C6C3D4 /* Build configuration list for PBXNativeTarget "DemoProject-iPad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A0BB4CE11A9EA7400C6C3D4 /* Debug */,
+				3A0BB4CF11A9EA7400C6C3D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "DemoProject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
