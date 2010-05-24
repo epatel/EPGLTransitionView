@@ -79,7 +79,10 @@
     glDrawArrays(GL_TRIANGLE_STRIP, 4, 4);
     glRotatef(180.0, 0, 1, 0);
     glBindTexture(GL_TEXTURE_2D, textureToView);
+    glPolygonOffset(0, -1);
+    glEnable(GL_POLYGON_OFFSET_FILL);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    glDisable(GL_POLYGON_OFFSET_FILL);
     glPopMatrix();
     glDrawArrays(GL_TRIANGLE_STRIP, 4, 4);
     glPopMatrix();
