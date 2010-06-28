@@ -11,6 +11,7 @@
 
 #import "DemoTransition.h"
 #import "Demo2Transition.h"
+#import "Demo3Transition.h"
 
 @implementation MainViewController
 
@@ -55,30 +56,31 @@
     
     NSObject<EPGLTransitionViewDelegate> *transition;
     
-    if ([sender tag])
-        transition = [[[Demo2Transition alloc] init] autorelease];
-    else
-        transition = [[[DemoTransition alloc] init] autorelease];
-    
+	switch ([sender tag]) {
+		case 0:
+			transition = [[[DemoTransition alloc] init] autorelease];
+			break;
+		case 1:
+			transition = [[[Demo2Transition alloc] init] autorelease];
+			break;
+		case 2:
+			transition = [[[Demo3Transition alloc] init] autorelease];
+			break;
+	}
+
     EPGLTransitionView *glview = [[[EPGLTransitionView alloc] 
                                    initWithView:self.view
                                    delegate:transition] autorelease];
     
-    if ([sender tag])
+    if ([sender tag]) {
         [glview prepareTextureTo:controller.view];
-
-#ifdef ENABLE_PHASE_IN
-    else 
-        // Get texture for the "next" view
-        [glview prepareTextureTo:controller.view];
-    
-    // If you are using an "IN" animation for the "next" view set appropriate 
-    // clear color (ie no alpha) 
-    [glview setClearColorRed:0.3
-                       green:0.3
-                        blue:0.3
-                       alpha:1.0];
-#endif
+		// If you are using an "IN" animation for the "next" view set appropriate 
+		// clear color (ie no alpha) 
+		[glview setClearColorRed:0.0
+						   green:0.0
+							blue:0.0
+						   alpha:1.0];
+	}    
     
     [glview startTransition];
     

@@ -26,6 +26,7 @@
 		3A0BB4D611A9EA7500C6C3D4 /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A0BB4D311A9EA7500C6C3D4 /* FlipsideView.xib */; };
 		3A0BB4D711A9EA7500C6C3D4 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A0BB4D411A9EA7500C6C3D4 /* MainView.xib */; };
 		3A0BB4D811A9EA7500C6C3D4 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A0BB4D511A9EA7500C6C3D4 /* MainWindow.xib */; };
+		3A4826D211D93FE10059B460 /* Demo3Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4826D111D93FE10059B460 /* Demo3Transition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,8 @@
 		3A112DAD113A8ED3004D04A4 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		3A112DC1113A8F7B004D04A4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3A112DDF113A9345004D04A4 /* painting.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = painting.jpg; sourceTree = "<group>"; };
+		3A4826D011D93FE10059B460 /* Demo3Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Demo3Transition.h; path = ../src/Demo3Transition.h; sourceTree = SOURCE_ROOT; };
+		3A4826D111D93FE10059B460 /* Demo3Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Demo3Transition.m; path = ../src/Demo3Transition.m; sourceTree = SOURCE_ROOT; };
 		3A7D0F6E117A423D00CFAD01 /* Demo2Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Demo2Transition.h; path = ../src/Demo2Transition.h; sourceTree = SOURCE_ROOT; };
 		3A7D0F6F117A423D00CFAD01 /* Demo2Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Demo2Transition.m; path = ../src/Demo2Transition.m; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* DemoProject-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DemoProject-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -181,6 +184,8 @@
 				3A112DA1113A8E8E004D04A4 /* DemoTransition.m */,
 				3A7D0F6E117A423D00CFAD01 /* Demo2Transition.h */,
 				3A7D0F6F117A423D00CFAD01 /* Demo2Transition.m */,
+				3A4826D011D93FE10059B460 /* Demo3Transition.h */,
+				3A4826D111D93FE10059B460 /* Demo3Transition.m */,
 				3A112DA2113A8E8E004D04A4 /* EPGLTransitionView.h */,
 				3A112DA3113A8E8E004D04A4 /* EPGLTransitionView.m */,
 			);
@@ -260,6 +265,7 @@
 				3A0BB4C411A9EA7400C6C3D4 /* DemoTransition.m in Sources */,
 				3A0BB4C511A9EA7400C6C3D4 /* EPGLTransitionView.m in Sources */,
 				3A0BB4C611A9EA7400C6C3D4 /* Demo2Transition.m in Sources */,
+				3A4826D211D93FE10059B460 /* Demo3Transition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,7 +317,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.1.2;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Debug;
 		};
@@ -324,7 +330,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.1.2;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Release;
 		};
