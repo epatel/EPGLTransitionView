@@ -1,6 +1,6 @@
 /* ===========================================================================
  
- Copyright (c) 2010 Edward Patel
+ Copyright (c) 2010-2011 Edward Patel
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -42,7 +42,7 @@
     if ((self = [super initWithFrame:view.frame]))
     {
         maxTextureSize = 512;
-        size = view.frame.size;
+        size = view.bounds.size;
         if (size.height > 512 || size.width > 512) // Big screen? iPad!
             maxTextureSize = 1024;
         delegate = _delegate;
@@ -117,7 +117,7 @@
                                      GL_RENDERBUFFER_OES, 
                                      depthRenderbuffer);
 
-        glViewport(0, 0, size.width, size.height);
+        glViewport(0, 0, view.frame.size.width, view.frame.size.height);
         
         glEnable(GL_DEPTH_TEST);
         
@@ -297,7 +297,6 @@
 
 - (BOOL) resizeFromLayer:(CAEAGLLayer *)layer
 {   
-    
     glBindRenderbufferOES(GL_RENDERBUFFER_OES, colorRenderbuffer);
     [context renderbufferStorage:GL_RENDERBUFFER_OES fromDrawable:layer];
     glGetRenderbufferParameterivOES(GL_RENDERBUFFER_OES, GL_RENDERBUFFER_WIDTH_OES, &backingWidth);
