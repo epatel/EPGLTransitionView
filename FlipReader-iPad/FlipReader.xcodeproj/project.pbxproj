@@ -15,6 +15,7 @@
 		2899E5220DE3E06400AC0155 /* FlipReaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* FlipReaderViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* FlipReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* FlipReaderViewController.m */; };
+		3A3F6C4C12F8A8C9007ABCD8 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A3F6C4B12F8A8C9007ABCD8 /* icon.png */; };
 		3A63317012F87F5B00678F4A /* EPGLTransitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A63316D12F87F5B00678F4A /* EPGLTransitionView.m */; };
 		3A63317112F87F5B00678F4A /* FlipTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A63316F12F87F5B00678F4A /* FlipTransitions.m */; };
 		3AC5C84512F83D8700345C6E /* thinking-forth-color.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 3AC5C84312F83D8700345C6E /* thinking-forth-color.pdf */; };
@@ -36,6 +37,7 @@
 		28D7ACF70DDB3853001CB0EB /* FlipReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipReaderViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* FlipReader_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipReader_Prefix.pch; sourceTree = "<group>"; };
+		3A3F6C4B12F8A8C9007ABCD8 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		3A63316C12F87F5B00678F4A /* EPGLTransitionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EPGLTransitionView.h; path = ../src/EPGLTransitionView.h; sourceTree = SOURCE_ROOT; };
 		3A63316D12F87F5B00678F4A /* EPGLTransitionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EPGLTransitionView.m; path = ../src/EPGLTransitionView.m; sourceTree = SOURCE_ROOT; };
 		3A63316E12F87F5B00678F4A /* FlipTransitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlipTransitions.h; path = ../src/FlipTransitions.h; sourceTree = SOURCE_ROOT; };
@@ -117,6 +119,7 @@
 				2899E5210DE3E06400AC0155 /* FlipReaderViewController.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* FlipReader-Info.plist */,
+				3A3F6C4B12F8A8C9007ABCD8 /* icon.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				2899E5220DE3E06400AC0155 /* FlipReaderViewController.xib in Resources */,
 				3AC5C84512F83D8700345C6E /* thinking-forth-color.pdf in Resources */,
+				3A3F6C4C12F8A8C9007ABCD8 /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
