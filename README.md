@@ -8,3 +8,6 @@ the animation.
 
 The FlipReader demo uses iPad in landscape to view a pdf with swipe gestures
 for page turning.
+
+Please note that the pdf in the FlipReader demo is the classical programming
+book Thinking Forth by Leo Brodie. Original is available (here)[http://thinking-forth.sourceforge.net/]
