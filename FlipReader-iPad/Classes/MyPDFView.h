@@ -10,8 +10,14 @@
 
 
 @interface MyPDFView : UIView {
+	CGPDFDocumentRef cover;
 	CGPDFDocumentRef book;
 	int pageNumber;
+  int numBookPages;
 }
+
+@property (readonly, nonatomic) int numBookPages;
+
 - (void)gotoPage:(int)nextPage;
+
 @end

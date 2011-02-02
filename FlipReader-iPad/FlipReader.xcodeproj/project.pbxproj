@@ -18,6 +18,7 @@
 		3A3F6C4C12F8A8C9007ABCD8 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A3F6C4B12F8A8C9007ABCD8 /* icon.png */; };
 		3A63317012F87F5B00678F4A /* EPGLTransitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A63316D12F87F5B00678F4A /* EPGLTransitionView.m */; };
 		3A63317112F87F5B00678F4A /* FlipTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A63316F12F87F5B00678F4A /* FlipTransitions.m */; };
+		3A63F7A612F9F5B900C4E447 /* thinking-forth-cover.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 3A63F7A512F9F5B900C4E447 /* thinking-forth-cover.pdf */; };
 		3AC5C84512F83D8700345C6E /* thinking-forth-color.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 3AC5C84312F83D8700345C6E /* thinking-forth-color.pdf */; };
 		3AC5C85C12F83E3900345C6E /* MyPDFView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC5C85B12F83E3900345C6E /* MyPDFView.m */; };
 		3AC5C97412F84CB700345C6E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AC5C97312F84CB700345C6E /* OpenGLES.framework */; };
@@ -28,7 +29,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* FlipReaderAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipReaderAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* FlipReaderAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipReaderAppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* FlipReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlipReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* ThinkingForth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThinkingForth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2899E5210DE3E06400AC0155 /* FlipReaderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlipReaderViewController.xib; sourceTree = "<group>"; };
@@ -42,6 +43,7 @@
 		3A63316D12F87F5B00678F4A /* EPGLTransitionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EPGLTransitionView.m; path = ../src/EPGLTransitionView.m; sourceTree = SOURCE_ROOT; };
 		3A63316E12F87F5B00678F4A /* FlipTransitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlipTransitions.h; path = ../src/FlipTransitions.h; sourceTree = SOURCE_ROOT; };
 		3A63316F12F87F5B00678F4A /* FlipTransitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlipTransitions.m; path = ../src/FlipTransitions.m; sourceTree = SOURCE_ROOT; };
+		3A63F7A512F9F5B900C4E447 /* thinking-forth-cover.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "thinking-forth-cover.pdf"; sourceTree = "<group>"; };
 		3AC5C84312F83D8700345C6E /* thinking-forth-color.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "thinking-forth-color.pdf"; sourceTree = "<group>"; };
 		3AC5C85A12F83E3900345C6E /* MyPDFView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPDFView.h; sourceTree = "<group>"; };
 		3AC5C85B12F83E3900345C6E /* MyPDFView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPDFView.m; sourceTree = "<group>"; };
@@ -82,7 +84,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* FlipReader.app */,
+				1D6058910D05DD3D006BFB54 /* ThinkingForth.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -139,6 +141,7 @@
 		3AC5C84012F83D6C00345C6E /* PDF */ = {
 			isa = PBXGroup;
 			children = (
+				3A63F7A512F9F5B900C4E447 /* thinking-forth-cover.pdf */,
 				3AC5C84312F83D8700345C6E /* thinking-forth-color.pdf */,
 			);
 			path = PDF;
@@ -147,9 +150,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* FlipReader */ = {
+		1D6058900D05DD3D006BFB54 /* ThinkingForth */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "FlipReader" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "ThinkingForth" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -159,9 +162,9 @@
 			);
 			dependencies = (
 			);
-			name = FlipReader;
+			name = ThinkingForth;
 			productName = FlipReader;
-			productReference = 1D6058910D05DD3D006BFB54 /* FlipReader.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* ThinkingForth.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -183,7 +186,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* FlipReader */,
+				1D6058900D05DD3D006BFB54 /* ThinkingForth */,
 			);
 		};
 /* End PBXProject section */
@@ -197,6 +200,7 @@
 				2899E5220DE3E06400AC0155 /* FlipReaderViewController.xib in Resources */,
 				3AC5C84512F83D8700345C6E /* thinking-forth-color.pdf in Resources */,
 				3A3F6C4C12F8A8C9007ABCD8 /* icon.png in Resources */,
+				3A63F7A612F9F5B900C4E447 /* thinking-forth-cover.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,7 +233,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = FlipReader_Prefix.pch;
 				INFOPLIST_FILE = "FlipReader-Info.plist";
-				PRODUCT_NAME = FlipReader;
+				PRODUCT_NAME = ThinkingForth;
 			};
 			name = Debug;
 		};
@@ -241,7 +245,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = FlipReader_Prefix.pch;
 				INFOPLIST_FILE = "FlipReader-Info.plist";
-				PRODUCT_NAME = FlipReader;
+				PRODUCT_NAME = ThinkingForth;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -278,7 +282,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "FlipReader" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "ThinkingForth" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,

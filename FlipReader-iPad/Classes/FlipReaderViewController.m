@@ -56,7 +56,7 @@
 }
 
 - (void)swipeLeftAction:(id)sender {	
-  if (pageNumber >= 312) 
+  if (pageNumber >= mpv.numBookPages) 
 		return;
 
   NSObject<EPGLTransitionViewDelegate> *transition = [[[FlipForward alloc] init] autorelease];
