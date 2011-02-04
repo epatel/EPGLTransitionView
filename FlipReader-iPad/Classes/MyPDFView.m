@@ -36,7 +36,7 @@
 - (void)drawRect:(CGRect)rect {	
 	CGPDFPageRef page1;
 	CGPDFPageRef page2;
-
+  
   if (pageNumber) {
     page1 = CGPDFDocumentGetPage(book, pageNumber-2);
     page2 = CGPDFDocumentGetPage(book, pageNumber-1);
@@ -48,22 +48,24 @@
     
     CGRect frameRect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     CGFloat scaleFactorWidth = 0.5*frameRect.size.width/pageRect.size.width;
+    CGFloat nudge = ((frameRect.size.height/scaleFactorWidth) - pageRect.size.height) / 2.0;
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
     CGContextFillRect(context, frameRect);
     CGContextSaveGState(context);
-    CGContextTranslateCTM(context, 0, rect.size.height);
+    CGContextTranslateCTM(context, frameRect.size.width/2.0, frameRect.size.height-nudge);
     CGContextScaleCTM(context, 1.0, -1.0);
     CGContextScaleCTM(context, scaleFactorWidth, scaleFactorWidth);	
+    CGContextTranslateCTM(context, -0.5*frameRect.size.width/scaleFactorWidth, 0);
     if (page1)
       CGContextDrawPDFPage(context, page1);
-    CGContextTranslateCTM(context, 0.5*rect.size.height*scaleFactorWidth, 0);
+    CGContextTranslateCTM(context, 0.5*frameRect.size.width/scaleFactorWidth, 0);
     if (page2)
       CGContextDrawPDFPage(context, page2);
-    CGContextMoveToPoint(context, 0.5*scaleFactorWidth, 0);
-    CGContextAddLineToPoint(context, 0.5*scaleFactorWidth, rect.size.width*scaleFactorWidth);
+    CGContextMoveToPoint(context, -0.5/scaleFactorWidth, -nudge/scaleFactorWidth);
+    CGContextAddLineToPoint(context, -0.5/scaleFactorWidth, frameRect.size.height/scaleFactorWidth);
     CGContextStrokePath(context);
   } else {
     page1 = CGPDFDocumentGetPage(cover, 1);
