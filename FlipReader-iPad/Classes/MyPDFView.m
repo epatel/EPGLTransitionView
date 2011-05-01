@@ -51,7 +51,6 @@
     CGFloat nudge = ((frameRect.size.height/scaleFactorWidth) - pageRect.size.height) / 2.0;
     
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
     CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
     CGContextFillRect(context, frameRect);
     CGContextSaveGState(context);
@@ -77,7 +76,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
-    CGContextFillRect(context, frameRect);
+    //CGContextFillRect(context, frameRect);
     CGContextSaveGState(context);
     CGContextTranslateCTM(context, 0, rect.size.height);
     CGContextScaleCTM(context, 1.0, -1.0);

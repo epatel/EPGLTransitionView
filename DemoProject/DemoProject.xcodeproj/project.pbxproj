@@ -27,6 +27,7 @@
 		3A112DE0113A9345004D04A4 /* painting.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3A112DDF113A9345004D04A4 /* painting.jpg */; };
 		3A7D0F70117A423D00CFAD01 /* Demo2Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D0F6F117A423D00CFAD01 /* Demo2Transition.m */; };
 		3A81AF5E11D92E9F002C1EFB /* Demo3Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A81AF5D11D92E9F002C1EFB /* Demo3Transition.m */; };
+		3A87BA9E136DCD460017976E /* table.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3A87BA9D136DCD460017976E /* table.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		3A7D0F6F117A423D00CFAD01 /* Demo2Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Demo2Transition.m; path = ../src/Demo2Transition.m; sourceTree = SOURCE_ROOT; };
 		3A81AF5C11D92E9F002C1EFB /* Demo3Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Demo3Transition.h; path = ../src/Demo3Transition.h; sourceTree = SOURCE_ROOT; };
 		3A81AF5D11D92E9F002C1EFB /* Demo3Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Demo3Transition.m; path = ../src/Demo3Transition.m; sourceTree = SOURCE_ROOT; };
+		3A87BA9D136DCD460017976E /* table.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = table.jpg; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* DemoProject-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DemoProject-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -150,6 +152,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3A87BA9D136DCD460017976E /* table.jpg */,
 				3A112DDF113A9345004D04A4 /* painting.jpg */,
 				280E754A0DD40C5E005A515E /* FlipsideView.xib */,
 				280E754B0DD40C5E005A515E /* MainView.xib */,
@@ -239,6 +242,7 @@
 				280E754F0DD40C5E005A515E /* MainWindow.xib in Resources */,
 				3A112DA9113A8EB2004D04A4 /* README.txt in Resources */,
 				3A112DE0113A9345004D04A4 /* painting.jpg in Resources */,
+				3A87BA9E136DCD460017976E /* table.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
