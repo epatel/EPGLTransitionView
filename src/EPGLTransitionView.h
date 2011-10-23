@@ -75,12 +75,12 @@
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
 @property (nonatomic) NSInteger transitionFrameInterval;
 
-- (id) initWithView:(UIView*)view 
-           delegate:(id<EPGLTransitionViewDelegate>)delegate;
-- (void) prepareTextureTo:(UIView*)view;
-- (void) startTransition;
-- (void) setClearColorRed:(GLfloat)red 
-                    green:(GLfloat)green
-                     blue:(GLfloat)blue
-                    alpha:(GLfloat)alpha;
+- (id)initWithView:(UIView*)view 
+          delegate:(id<EPGLTransitionViewDelegate>)delegate;
+- (void)prepareTextureTo:(UIView*)view;
+- (void)startTransition;
+- (void)setClearColorRed:(GLfloat)red 
+                   green:(GLfloat)green
+                    blue:(GLfloat)blue
+                   alpha:(GLfloat)alpha;
 @end

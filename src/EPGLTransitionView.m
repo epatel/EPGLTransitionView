@@ -31,7 +31,7 @@
 @synthesize animating;
 @dynamic transitionFrameInterval;
 
-+ (Class) layerClass
++ (Class)layerClass
 {
     return [CAEAGLLayer class];
 }
@@ -39,14 +39,13 @@
 - (id)initWithView:(UIView*)view 
           delegate:(id<EPGLTransitionViewDelegate>)_delegate;
 {
-    if ((self = [super initWithFrame:view.frame]))
-    {
+    if ((self = [super initWithFrame:view.frame])) {
         maxTextureSize = 512;
         size = view.bounds.size;
         if (size.height > 512 || size.width > 512) // Big screen? iPad!
             maxTextureSize = 1024;
         delegate = _delegate;
-        [delegate retain];      
+        [delegate retain];
         [self setClearColorRed:0.0
                          green:0.0
                           blue:0.0
@@ -87,8 +86,7 @@
         // Create a renderer with texture data for a screen shot
         context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
         
-        if (!context || ![EAGLContext setCurrentContext:context])
-        {
+        if (!context || ![EAGLContext setCurrentContext:context]) {
             [self release];
             return nil;
         }
@@ -116,7 +114,7 @@
                                      GL_DEPTH_ATTACHMENT_OES, 
                                      GL_RENDERBUFFER_OES, 
                                      depthRenderbuffer);
-
+        
         glViewport(0, 0, view.frame.size.width, view.frame.size.height);
         
         glEnable(GL_DEPTH_TEST);
@@ -148,9 +146,22 @@
     return self;
 }
 
-- (void) prepareTextureTo:(UIView*)view
+- (void)prepareTextureTo:(UIView*)view
 {
     // Get a image of the screen
+    CGRect r = view.bounds;
+    switch ([[UIApplication sharedApplication] statusBarOrientation]) {
+        case UIInterfaceOrientationPortrait:
+        case UIInterfaceOrientationPortraitUpsideDown:
+            // Normal size
+            break;
+        case UIInterfaceOrientationLandscapeLeft:
+        case UIInterfaceOrientationLandscapeRight:
+            // Swap width/height
+            r.size = CGSizeMake(self.bounds.size.height, self.bounds.size.width);
+            break;
+    }
+    view.bounds = r;
     UIGraphicsBeginImageContext(view.bounds.size);
     [view.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
@@ -185,22 +196,19 @@
     free(textureData);
 }
 
-- (NSInteger) transitionFrameInterval
+- (NSInteger)transitionFrameInterval
 {
     return transitionFrameInterval;
 }
 
 - (void)stopTransition
 {
-    if (animating)
-    {
-        if (displayLinkSupported)
-        {
+    if (animating) {
+        
+        if (displayLinkSupported) {
             [displayLink invalidate];
             displayLink = nil;
-        }
-        else
-        {
+        } else {
             [animationTimer invalidate];
             animationTimer = nil;
         }
@@ -209,55 +217,48 @@
     }
 }
 
-- (void) setTransitionFrameInterval:(NSInteger)frameInterval
+- (void)setTransitionFrameInterval:(NSInteger)frameInterval
 {
-    if (frameInterval >= 1)
-    {
+    if (frameInterval >= 1) {
         transitionFrameInterval = frameInterval;
         
-        if (animating)
-        {
+        if (animating) {
             [self stopTransition];
             [self startTransition];
         }
     }
 }
 
-- (void) startTransition
+- (void)startTransition
 {
-    if (!animating)
-    {
-        if (displayLinkSupported)
-        {           
-            displayLink = [NSClassFromString(@"CADisplayLink") displayLinkWithTarget:self selector:@selector(drawView:)];
+    if (!animating) {
+        
+        if (displayLinkSupported) {           
+            displayLink = [NSClassFromString(@"CADisplayLink") displayLinkWithTarget:self 
+                                                                            selector:@selector(drawView:)];
             [displayLink setFrameInterval:transitionFrameInterval];
             [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-        }
-        else
+        } else {
             animationTimer = [NSTimer scheduledTimerWithTimeInterval:(NSTimeInterval)((1.0 / 60.0) * transitionFrameInterval) target:self selector:@selector(drawView:) userInfo:nil repeats:TRUE];
+        }
         
         animating = TRUE;
     }
 }
 
-- (void) dealloc
-{
-    [delegate release];
-    
-    if (defaultFramebuffer)
-    {
+- (void)dealloc
+{    
+    if (defaultFramebuffer) {
         glDeleteFramebuffersOES(1, &defaultFramebuffer);
         defaultFramebuffer = 0;
     }
     
-    if (colorRenderbuffer)
-    {
+    if (colorRenderbuffer) {
         glDeleteRenderbuffersOES(1, &colorRenderbuffer);
         colorRenderbuffer = 0;
     }
     
-    if (depthRenderbuffer) 
-    {
+    if (depthRenderbuffer) {
         glDeleteRenderbuffersOES(1, &depthRenderbuffer);
         depthRenderbuffer = 0;
     }
@@ -271,7 +272,7 @@
     [super dealloc];
 }
 
-- (BOOL) render
+- (BOOL)render
 {
     [EAGLContext setCurrentContext:context];
     
@@ -295,7 +296,7 @@
     return drawOK;
 }
 
-- (BOOL) resizeFromLayer:(CAEAGLLayer *)layer
+- (BOOL)resizeFromLayer:(CAEAGLLayer *)layer
 {   
     glBindRenderbufferOES(GL_RENDERBUFFER_OES, colorRenderbuffer);
     [context renderbufferStorage:GL_RENDERBUFFER_OES fromDrawable:layer];
@@ -307,8 +308,7 @@
                              backingWidth, 
                              backingHeight);
     
-    if (glCheckFramebufferStatusOES(GL_FRAMEBUFFER_OES) != GL_FRAMEBUFFER_COMPLETE_OES)
-    {
+    if (glCheckFramebufferStatusOES(GL_FRAMEBUFFER_OES) != GL_FRAMEBUFFER_COMPLETE_OES) {
         NSLog(@"Failed to make complete framebuffer object %x", glCheckFramebufferStatusOES(GL_FRAMEBUFFER_OES));
         return NO;
     }
@@ -316,7 +316,7 @@
     return YES;
 }
 
-- (void) drawView:(id)sender
+- (void)drawView:(id)sender
 {
     if ([self render] == NO) {
         [self stopTransition];
@@ -327,16 +327,16 @@
     }
 }
 
-- (void) layoutSubviews
+- (void)layoutSubviews
 {
     [self resizeFromLayer:(CAEAGLLayer*)self.layer];
     [self drawView:nil];
 }
 
-- (void) setClearColorRed:(GLfloat)red 
-                    green:(GLfloat)green
-                     blue:(GLfloat)blue
-                    alpha:(GLfloat)alpha
+- (void)setClearColorRed:(GLfloat)red 
+                   green:(GLfloat)green
+                    blue:(GLfloat)blue
+                   alpha:(GLfloat)alpha
 {
     clearColor[0] = red;
     clearColor[1] = green;

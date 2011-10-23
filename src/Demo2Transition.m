@@ -31,7 +31,22 @@
     // Setup matrices
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glFrustumf(-0.1, 0.1, -0.15, 0.15, 0.4, 100.0);
+    switch ([[UIApplication sharedApplication] statusBarOrientation]) {
+        case UIInterfaceOrientationPortrait:
+            break;
+        case UIInterfaceOrientationPortraitUpsideDown:
+            glRotatef(180, 0, 0, 1);
+            break;
+        case UIInterfaceOrientationLandscapeLeft:
+            glRotatef( 90, 0, 0, 1);
+            break;
+        case UIInterfaceOrientationLandscapeRight:
+            glRotatef(-90, 0, 0, 1);
+            break;
+    }
+    glFrustumf(-0.1*1.0/0.4, 0.1*1.0/0.4, 
+               -0.15*1.0/0.4, 0.15*1.0/0.4, 
+               1.0, 10.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();    
     glEnable(GL_CULL_FACE);
