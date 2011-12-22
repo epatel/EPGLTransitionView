@@ -51,7 +51,7 @@
 {
     if ((self = [super initWithFrame:view.frame])) {
         maxTextureSize = 512;
-        size = view.bounds.size;
+        size = UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]) ? view.bounds.size : CGSizeMake(view.bounds.size.height, view.bounds.size.width);
         
         //Retina support
         CGFloat contentScale = view.contentScaleFactor;
