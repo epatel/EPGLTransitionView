@@ -36,14 +36,35 @@
     return [CAEAGLLayer class];
 }
 
+- (UIImage *)imageWithView:(UIView *)view
+{
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, view.contentScaleFactor); //Retina support
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return img;
+}
+
 - (id)initWithView:(UIView*)view 
           delegate:(id<EPGLTransitionViewDelegate>)_delegate;
 {
     if ((self = [super initWithFrame:view.frame])) {
         maxTextureSize = 512;
         size = view.bounds.size;
-        if (size.height > 512 || size.width > 512) // Big screen? iPad!
-            maxTextureSize = 1024;
+        
+        //Retina support
+        CGFloat contentScale = view.contentScaleFactor;
+        size.width *= contentScale;
+        size.height *= contentScale;
+        self.contentScaleFactor = contentScale;
+        
+        maxTextureSize = 512;
+        
+        while (size.height > maxTextureSize || size.width > maxTextureSize) {
+            maxTextureSize *= 2; // properly setup maxTextureSize size for iPhone & future iPad Retina screen
+        }
+        
         delegate = _delegate;
         [delegate retain];
         [self setClearColorRed:0.0
@@ -51,11 +72,8 @@
                           blue:0.0
                          alpha:0.0];
         
-        // Get a image of the screen
-        UIGraphicsBeginImageContext(view.bounds.size);
-        [view.layer renderInContext:UIGraphicsGetCurrentContext()];
-        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
+
+        UIImage *image = [self imageWithView:view];
         
         // Allocate some memory for the texture
         GLubyte *textureData = (GLubyte*)calloc(maxTextureSize*4, maxTextureSize);
@@ -68,6 +86,7 @@
                                                             maxTextureSize*4, 
                                                             CGImageGetColorSpace(image.CGImage),    
                                                             kCGImageAlphaPremultipliedLast);
+        
         CGContextDrawImage(textureContext, 
                            CGRectMake(0, maxTextureSize-size.height, size.width, size.height), 
                            image.CGImage);
@@ -115,7 +134,8 @@
                                      GL_RENDERBUFFER_OES, 
                                      depthRenderbuffer);
         
-        glViewport(0, 0, view.frame.size.width, view.frame.size.height);
+        
+        glViewport(0, 0, size.width, size.height);
         
         glEnable(GL_DEPTH_TEST);
         
@@ -162,10 +182,8 @@
             break;
     }
     view.bounds = r;
-    UIGraphicsBeginImageContext(view.bounds.size);
-    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+
+    UIImage *image = [self imageWithView:view];
     
     // Allocate some memory for the texture
     GLubyte *textureData = (GLubyte*)calloc(maxTextureSize*4, maxTextureSize);
