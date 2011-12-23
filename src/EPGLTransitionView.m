@@ -38,8 +38,8 @@
 
 - (UIImage *)imageWithView:(UIView *)view
 {
-    if ([view respondsToSelector:@selector(contentScaleFactor)])
-        UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, view.contentScaleFactor); //Retina support
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, [[UIScreen mainScreen] scale]); //Retina support
     else
         UIGraphicsBeginImageContext(view.bounds.size);
     [view.layer renderInContext:UIGraphicsGetCurrentContext()];
@@ -57,8 +57,8 @@
         size = UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]) ? view.bounds.size : CGSizeMake(view.bounds.size.height, view.bounds.size.width);
         
         //Retina support
-        if ([view respondsToSelector:@selector(contentScaleFactor)]) {
-            CGFloat contentScale = view.contentScaleFactor;
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
+            CGFloat contentScale = [[UIScreen mainScreen] scale];
             size.width *= contentScale;
             size.height *= contentScale;
             self.contentScaleFactor = contentScale;
