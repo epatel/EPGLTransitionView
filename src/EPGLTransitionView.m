@@ -38,7 +38,10 @@
 
 - (UIImage *)imageWithView:(UIView *)view
 {
-    UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, view.contentScaleFactor); //Retina support
+    if ([view respondsToSelector:@selector(contentScaleFactor)])
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, view.contentScaleFactor); //Retina support
+    else
+        UIGraphicsBeginImageContext(view.bounds.size);
     [view.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -54,10 +57,12 @@
         size = UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]) ? view.bounds.size : CGSizeMake(view.bounds.size.height, view.bounds.size.width);
         
         //Retina support
-        CGFloat contentScale = view.contentScaleFactor;
-        size.width *= contentScale;
-        size.height *= contentScale;
-        self.contentScaleFactor = contentScale;
+        if ([view respondsToSelector:@selector(contentScaleFactor)]) {
+            CGFloat contentScale = view.contentScaleFactor;
+            size.width *= contentScale;
+            size.height *= contentScale;
+            self.contentScaleFactor = contentScale;
+        }
         
         maxTextureSize = 512;
         
