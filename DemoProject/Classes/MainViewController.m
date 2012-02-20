@@ -62,6 +62,8 @@
 			break;
 		case 1:
 			transition = [[[Demo2Transition alloc] init] autorelease];
+            [transition setIsVertical:NO];
+            [transition setReverseDirection:YES];
 			break;
 		case 2:
 			transition = [[[Demo3Transition alloc] init] autorelease];

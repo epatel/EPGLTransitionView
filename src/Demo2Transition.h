@@ -30,6 +30,13 @@
 
 @interface Demo2Transition : NSObject<EPGLTransitionViewDelegate> {
     float f;
+    bool                                reverseDirection;
+    bool                                isVertical;
+    int                                 xRotate;
+    int                                 yRotate;
 }
+
+@property (nonatomic)       bool        reverseDirection;
+@property (nonatomic)       bool        isVertical;
 
 @end
