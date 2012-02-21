@@ -1,3 +1,7 @@
+Added features in this fork:
+    * Reversed Flip Animation
+    * Top - Bottom Flip Animation
+
 # EPGLTransitionView 
 
 This project creates an OpenGL ES view that is used to create a disappearing 
