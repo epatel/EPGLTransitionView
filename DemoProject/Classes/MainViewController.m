@@ -53,8 +53,11 @@
                                           initWithNibName:@"FlipsideView" 
                                           bundle:nil];
     controller.delegate = self;
+    controller.view.frame = CGRectMake(0, 20, 320, 460);
     
     NSObject<EPGLTransitionViewDelegate> *transition;
+    
+    bool rev = NO;
     
 	switch ([sender tag]) {
 		case 0:
@@ -63,19 +66,32 @@
 		case 1:
 			transition = [[[Demo2Transition alloc] init] autorelease];
             [transition setIsVertical:NO];
-            [transition setReverseDirection:YES];
+            [transition setReverseDirection:rev];
 			break;
 		case 2:
 			transition = [[[Demo3Transition alloc] init] autorelease];
 			break;
 	}
 
-    EPGLTransitionView *glview = [[[EPGLTransitionView alloc] 
-                                   initWithView:self.view
-                                   delegate:transition] autorelease];
+    EPGLTransitionView *glview;
+    if (rev) {
+        glview = [[[EPGLTransitionView alloc] 
+                                       initWithReverseView:controller.view
+                                       delegate:transition] autorelease];
+    } else {
+        glview = [[[EPGLTransitionView alloc] 
+                                       initWithView:self.view
+                                       delegate:transition] autorelease];        
+    }
+    
     
     if ([sender tag]) {
-        [glview prepareTextureTo:controller.view];
+        if (rev) {
+            [glview prepareTextureFrom:self.view];
+        } else {
+            [glview prepareTextureTo:controller.view];
+        }
+        
 		// If you are using an "IN" animation for the "next" view set appropriate 
 		// clear color (ie no alpha) 
 		[glview setClearColorRed:0.0

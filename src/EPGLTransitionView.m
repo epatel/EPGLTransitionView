@@ -171,6 +171,126 @@
     return self;
 }
 
+- (id)initWithReverseView:(UIView*)view 
+          delegate:(id<EPGLTransitionViewDelegate>)_delegate;
+{
+    if ((self = [super initWithFrame:view.frame])) {
+        maxTextureSize = 512;
+        size = UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]) ? view.bounds.size : CGSizeMake(view.bounds.size.height, view.bounds.size.width);
+        
+        //Retina support
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
+            CGFloat contentScale = [[UIScreen mainScreen] scale];
+            size.width *= contentScale;
+            size.height *= contentScale;
+            self.contentScaleFactor = contentScale;
+        }
+        
+        maxTextureSize = 512;
+        
+        while (size.height > maxTextureSize || size.width > maxTextureSize) {
+            maxTextureSize *= 2; // properly setup maxTextureSize size for iPhone & future iPad Retina screen
+        }
+        
+        delegate = _delegate;
+        [delegate retain];
+        [self setClearColorRed:0.0
+                         green:0.0
+                          blue:0.0
+                         alpha:0.0];
+        
+        
+        UIImage *image = [self imageWithView:view];
+        
+        // Allocate some memory for the texture
+        GLubyte *textureData = (GLubyte*)calloc(maxTextureSize*4, maxTextureSize);
+        
+        // Create a drawing context to draw image into texture memory
+        CGContextRef textureContext = CGBitmapContextCreate(textureData, 
+                                                            maxTextureSize, 
+                                                            maxTextureSize, 
+                                                            8, 
+                                                            maxTextureSize*4, 
+                                                            CGImageGetColorSpace(image.CGImage),    
+                                                            kCGImageAlphaPremultipliedLast);
+        
+        CGContextDrawImage(textureContext, 
+                           CGRectMake(0, maxTextureSize-size.height, size.width, size.height), 
+                           image.CGImage);
+        CGContextRelease(textureContext);
+        // ...done creating the texture data
+        
+        CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;
+        
+        self.userInteractionEnabled = NO;
+        
+        eaglLayer.opaque = NO;
+        eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
+                                        [NSNumber numberWithBool:NO], kEAGLDrawablePropertyRetainedBacking, 
+                                        kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
+        
+        // Create a renderer with texture data for a screen shot
+        context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
+        
+        if (!context || ![EAGLContext setCurrentContext:context]) {
+            [self release];
+            return nil;
+        }
+        
+        glGenTextures(1, &textureFromView);
+        glBindTexture(GL_TEXTURE_2D, textureFromView);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, maxTextureSize, maxTextureSize, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureData);
+        
+        // free texture data which is by now copied into the GL context
+        free(textureData);
+        
+        glGenFramebuffersOES(1, &defaultFramebuffer);
+        glGenRenderbuffersOES(1, &colorRenderbuffer);
+        glGenRenderbuffersOES(1, &depthRenderbuffer);
+        glBindFramebufferOES(GL_FRAMEBUFFER_OES, defaultFramebuffer);
+        glBindRenderbufferOES(GL_RENDERBUFFER_OES, colorRenderbuffer);
+        glFramebufferRenderbufferOES(GL_FRAMEBUFFER_OES, 
+                                     GL_COLOR_ATTACHMENT0_OES, 
+                                     GL_RENDERBUFFER_OES, 
+                                     colorRenderbuffer);        
+        glBindRenderbufferOES(GL_RENDERBUFFER_OES, depthRenderbuffer);
+        glFramebufferRenderbufferOES(GL_FRAMEBUFFER_OES, 
+                                     GL_DEPTH_ATTACHMENT_OES, 
+                                     GL_RENDERBUFFER_OES, 
+                                     depthRenderbuffer);
+        
+        
+        glViewport(0, 0, size.width, size.height);
+        
+        glEnable(GL_DEPTH_TEST);
+        
+        glMatrixMode(GL_TEXTURE);
+        glLoadIdentity();
+        glScalef(size.width/(float)maxTextureSize, size.height/(float)maxTextureSize, 1.0); // Convert to screen part of the maxTextureSizexmaxTextureSize texture
+        glMatrixMode(GL_MODELVIEW);
+        
+        // setup delegate now when GL context is active
+        [delegate setupTransition];
+        
+        animating = FALSE;
+        displayLinkSupported = FALSE;
+        transitionFrameInterval = 1;
+        displayLink = nil;
+        animationTimer = nil;
+        
+        // A system version of 3.1 or greater is required to use CADisplayLink. The NSTimer
+        // class is used as fallback when it isn't available.
+        NSString *reqSysVer = @"3.1";
+        NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+        if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
+            displayLinkSupported = TRUE;
+    }
+    
+    return self;
+}
+
 - (void)prepareTextureTo:(UIView*)view
 {
     // Get a image of the screen
@@ -214,6 +334,56 @@
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, maxTextureSize, maxTextureSize, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureData);
+    
+    // free texture data which is by now copied into the GL context
+    free(textureData);
+}
+
+- (void)prepareTextureFrom:(UIView*)view
+{
+    // Get a image of the screen
+    CGRect r = view.bounds;
+    switch ([[UIApplication sharedApplication] statusBarOrientation]) {
+        case UIInterfaceOrientationPortrait:
+        case UIInterfaceOrientationPortraitUpsideDown:
+            // Normal size
+            break;
+        case UIInterfaceOrientationLandscapeLeft:
+        case UIInterfaceOrientationLandscapeRight:
+            // Swap width/height
+            r.size = CGSizeMake(self.bounds.size.height, self.bounds.size.width);
+            break;
+    }
+    view.bounds = r;
+    
+    UIImage *image = [self imageWithView:view];
+    
+    // Allocate some memory for the texture
+    GLubyte *textureData = (GLubyte*)calloc(maxTextureSize*4, maxTextureSize);
+    
+    // Create a drawing context to draw image into texture memory
+    CGContextRef textureContext = CGBitmapContextCreate(textureData, 
+                                                        maxTextureSize, 
+                                                        maxTextureSize, 
+                                                        8, 
+                                                        maxTextureSize*4, 
+                                                        CGImageGetColorSpace(image.CGImage),    
+                                                        kCGImageAlphaPremultipliedLast);
+    CGContextDrawImage(textureContext, 
+                       CGRectMake(0, maxTextureSize-size.height, size.width, size.height), 
+                       image.CGImage);
+    CGContextRelease(textureContext);
+    // ...done creating the texture data
+    
+    [EAGLContext setCurrentContext:context];
+    
+    glGenTextures(1, &textureToView);
+    glBindTexture(GL_TEXTURE_2D, textureToView);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, maxTextureSize, maxTextureSize, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureData);
+    
+    [view.window addSubview:self];
     
     // free texture data which is by now copied into the GL context
     free(textureData);

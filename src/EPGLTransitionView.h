@@ -77,7 +77,10 @@
 
 - (id)initWithView:(UIView*)view 
           delegate:(id<EPGLTransitionViewDelegate>)delegate;
+- (id)initWithReverseView:(UIView*)view 
+          delegate:(id<EPGLTransitionViewDelegate>)delegate;
 - (void)prepareTextureTo:(UIView*)view;
+- (void)prepareTextureFrom:(UIView*)view;
 - (void)startTransition;
 - (void)setClearColorRed:(GLfloat)red 
                    green:(GLfloat)green
