@@ -70,15 +70,15 @@
     int         maxTextureSize;
     
     GLfloat     clearColor[4];
+    
+    UIView      *fromView;
+    UIView      *toView;
 }
 
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
 @property (nonatomic) NSInteger transitionFrameInterval;
 
-- (id)initWithView:(UIView*)view 
-          delegate:(id<EPGLTransitionViewDelegate>)delegate;
-- (id)initWithReverseView:(UIView*)view 
-          delegate:(id<EPGLTransitionViewDelegate>)delegate;
+- (id)initWithView1:(UIView*)view1 andView2:(UIView*)view2 delegate:(id<EPGLTransitionViewDelegate>)delegate fwdDirection:(BOOL)fwd;
 - (void)prepareTextureTo:(UIView*)view;
 - (void)prepareTextureFrom:(UIView*)view;
 - (void)startTransition;
