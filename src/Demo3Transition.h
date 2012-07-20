@@ -31,6 +31,9 @@
 @interface Demo3Transition : NSObject<EPGLTransitionViewDelegate> {
     float f;
     GLuint woodTexture;
+    BOOL leftToRight;
 }
+
+@property (assign) BOOL leftToRight;
 
 @end

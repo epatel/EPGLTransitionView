@@ -26,6 +26,8 @@
 
 @implementation Demo3Transition
 
+@synthesize leftToRight;
+
 - (void)setupTransition
 {
     // Setup matrices
@@ -48,7 +50,11 @@
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();    
     glEnable(GL_CULL_FACE);
-    f = 0;
+
+    if (leftToRight)
+        f = M_PI;
+    else
+        f = 0;
 
     CGImageRef woodImage;
     size_t width;
@@ -112,6 +118,9 @@
         0.167, 1.0,
     };
     
+    if (leftToRight)
+    	glBindTexture(GL_TEXTURE_2D, textureToView);
+
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
@@ -137,15 +146,23 @@
     glVertexPointer(2, GL_FLOAT, 0, vertices);
     glTexCoordPointer(2, GL_FLOAT, 0, texcoords);
 
-	glBindTexture(GL_TEXTURE_2D, textureToView);
+    if (leftToRight)
+        glBindTexture(GL_TEXTURE_2D, textureFromView);
+    else
+        glBindTexture(GL_TEXTURE_2D, textureToView);
+    
     glTranslatef(0, 0, -0.5);
 	glRotatef(180, 0, 1, 0);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4); // Draw back
     glPopMatrix();
 
-    f += M_PI/80.0;
-    
-    return f < M_PI;
+    if (leftToRight) {
+        f -= M_PI/80.0;
+        return f > 0.0;
+    } else {
+        f += M_PI/80.0;   
+        return f < M_PI;
+    }
 }
 
 - (void)transitionEnded

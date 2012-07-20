@@ -61,6 +61,7 @@
 			break;
 		case 2:
 			transition = [[[Demo3Transition alloc] init] autorelease];
+           ((Demo3Transition*)transition).leftToRight = YES;
 			break;
 	}
     
