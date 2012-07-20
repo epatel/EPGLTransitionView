@@ -26,6 +26,9 @@
 
 @implementation Demo2Transition
 
+@synthesize reverseDirection;
+@synthesize isVertical;
+
 - (void)setupTransition
 {
     // Setup matrices
@@ -50,35 +53,81 @@
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();    
     glEnable(GL_CULL_FACE);
-    f = 0;
+    
+    if (isVertical) {
+        yRotate = 0;
+        xRotate = 1;
+    } else {
+        yRotate = 1;
+        xRotate = 0;
+    }
+    
+    if (reverseDirection) {
+        f = M_PI;
+    } else {
+        f = 0;    
+    }
 }
 
 // GL context is active and screen texture bound to be used
 - (BOOL)drawTransitionFrameWithTextureFrom:(GLuint)textureFromView 
                                  textureTo:(GLuint)textureToView
 {
-    GLfloat vertices[] = {
-        -1, -1.5,
-         0, -1.5,
-        -1,  1.5,
-         0,  1.5,
-         0, -1.5,
-         1, -1.5,
-         0,  1.5,
-         1,  1.5,
-    };
+    GLfloat vertices[16];
+    GLfloat texcoords[16];
     
-    GLfloat texcoords[] = {
-        0.0, 1,
-        0.5, 1,
-        0.0, 0,
-        0.5, 0,
-        0.5, 1,
-        1.0, 1,
-        0.5, 0,
-        1.0, 0,
-    };
-    
+    if (isVertical) {
+        
+        GLfloat v[] = {
+            -1, 1.5,
+            -1, 0,
+            1,  1.5,
+            1,  0,
+            -1, 0,
+            -1, -1.5,
+            1, 0,
+            1, -1.5,
+        };
+        
+        GLfloat t[] = {
+            0, 0,
+            0, 0.5,
+            1, 0,
+            1, 0.5,
+            0, 0.5,
+            0, 1,
+            1, 0.5,
+            1, 1,
+        };
+        
+        memcpy(vertices, v, 64);
+        memcpy(texcoords, t, 64);
+    } else {
+        GLfloat v[] = {
+            -1, -1.5,
+            0, -1.5,
+            -1,  1.5,
+            0,  1.5,
+            0, -1.5,
+            1, -1.5,
+            0,  1.5,
+            1,  1.5,
+        };
+        
+        GLfloat t[] = {
+            0.0, 1,
+            0.5, 1,
+            0.0, 0,
+            0.5, 0,
+            0.5, 1,
+            1.0, 1,
+            0.5, 0,
+            1.0, 0,
+        };
+        
+        memcpy(vertices, v, 64);
+        memcpy(texcoords, t, 64);
+    }
     glVertexPointer(2, GL_FLOAT, 0, vertices);
     glEnableClientState(GL_VERTEX_ARRAY);
     glTexCoordPointer(2, GL_FLOAT, 0, texcoords);
@@ -90,9 +139,9 @@
     glTranslatef(0, 0, -4);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     glPushMatrix();
-    glRotatef(v*180.0, 0, 1, 0);
+    glRotatef(v*180.0, xRotate, yRotate, 0);
     glDrawArrays(GL_TRIANGLE_STRIP, 4, 4);
-    glRotatef(180.0, 0, 1, 0);
+    glRotatef(180.0, xRotate, yRotate, 0);
     glBindTexture(GL_TEXTURE_2D, textureToView);
     glPolygonOffset(0, -1);
     glEnable(GL_POLYGON_OFFSET_FILL);
@@ -101,10 +150,14 @@
     glPopMatrix();
     glDrawArrays(GL_TRIANGLE_STRIP, 4, 4);
     glPopMatrix();
-
-    f += M_PI/40.0;
     
-    return f < M_PI;
+    if (reverseDirection) {
+        f -= M_PI/40.0;
+        return f > 0;
+    } else {
+        f += M_PI/40.0;   
+        return f < M_PI;
+    }
 }
 
 - (void)transitionEnded

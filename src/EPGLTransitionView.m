@@ -49,12 +49,18 @@
     return img;
 }
 
-- (id)initWithView:(UIView*)view 
-          delegate:(id<EPGLTransitionViewDelegate>)_delegate;
-{
-    if ((self = [super initWithFrame:view.frame])) {
+- (id)initWithView1:(UIView*)view1 andView2:(UIView*)view2 delegate:(id<EPGLTransitionViewDelegate>)_delegate fwdDirection:(BOOL)fwd {
+    if (fwd) {
+        fromView = view1;
+        toView   = view2;
+    } else {
+        fromView = view2;
+        toView   = view1;
+    }
+    
+    if (self = [super initWithFrame:fromView.frame]) {
         maxTextureSize = 512;
-        size = UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]) ? view.bounds.size : CGSizeMake(view.bounds.size.height, view.bounds.size.width);
+        size = UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]) ? fromView.bounds.size : CGSizeMake(fromView.bounds.size.height, fromView.bounds.size.width);
         
         //Retina support
         if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
@@ -72,13 +78,16 @@
         
         delegate = _delegate;
         [delegate retain];
+        if ([delegate respondsToSelector:@selector(setReverseDirection:)]) {
+            [delegate setReverseDirection:!fwd];
+        }
         [self setClearColorRed:0.0
                          green:0.0
                           blue:0.0
                          alpha:0.0];
         
-
-        UIImage *image = [self imageWithView:view];
+        
+        UIImage *image = [self imageWithView:fromView];
         
         // Allocate some memory for the texture
         GLubyte *textureData = (GLubyte*)calloc(maxTextureSize*4, maxTextureSize);
@@ -152,7 +161,7 @@
         // setup delegate now when GL context is active
         [delegate setupTransition];
         
-        [view.window addSubview:self];
+        [view1.window addSubview:self];
         
         animating = FALSE;
         displayLinkSupported = FALSE;
@@ -166,6 +175,8 @@
         NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
         if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
             displayLinkSupported = TRUE;
+        
+        [self prepareTextureTo:toView];
     }
     
     return self;

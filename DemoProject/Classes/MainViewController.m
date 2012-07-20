@@ -53,34 +53,54 @@
                                           initWithNibName:@"FlipsideView" 
                                           bundle:nil];
     controller.delegate = self;
+    controller.view.frame = CGRectMake(0, 20, 320, 460);
     
     NSObject<EPGLTransitionViewDelegate> *transition;
     
+    EPGLTransitionView *glview;
 	switch ([sender tag]) {
 		case 0:
 			transition = [[[DemoTransition alloc] init] autorelease];
+            glview = [[EPGLTransitionView alloc] 
+                      initWithView1:self.view
+                      andView2:controller.view
+                      delegate:transition
+                      fwdDirection:YES];
 			break;
 		case 1:
 			transition = [[[Demo2Transition alloc] init] autorelease];
+            [transition setIsVertical:YES];
+            glview = [[EPGLTransitionView alloc] 
+                      initWithView1:self.view 
+                      andView2:controller.view 
+                      delegate:transition
+                      fwdDirection:NO];
 			break;
 		case 2:
 			transition = [[[Demo3Transition alloc] init] autorelease];
+            glview = [[EPGLTransitionView alloc] 
+                      initWithView1:self.view
+                      andView2:controller.view
+                      delegate:transition
+                      fwdDirection:YES];
 			break;
 	}
-
-    EPGLTransitionView *glview = [[[EPGLTransitionView alloc] 
-                                   initWithView:self.view
-                                   delegate:transition] autorelease];
     
+    /*
     if ([sender tag]) {
-        [glview prepareTextureTo:controller.view];
+        if (rev) {
+            [glview prepareTextureFrom:self.view];
+        } else {
+            [glview prepareTextureTo:controller.view];
+        }
+        
 		// If you are using an "IN" animation for the "next" view set appropriate 
 		// clear color (ie no alpha) 
 		[glview setClearColorRed:0.0
 						   green:0.0
 							blue:0.0
 						   alpha:1.0];
-	}    
+	}*/ 
     
     [glview startTransition];
     
